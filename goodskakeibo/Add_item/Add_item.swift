@@ -11,6 +11,7 @@ import RealmSwift
 class Add_item: UIViewController {
     
     let realm = try! Realm()
+    var yosan_data:Int!
     
     @IBOutlet var goodsName: UITextField!
     @IBOutlet var deadline: UIDatePicker!
@@ -19,11 +20,22 @@ class Add_item: UIViewController {
     @IBOutlet var pick_Image: UIButton!
     @IBOutlet var pickImage: UIImageView!
     @IBOutlet var is_bought: UISwitch!
+    
+    var item_edit: GoodsItem?
+    var segue_name: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         add_setting()
         price.keyboardType = UIKeyboardType.numberPad
+        
+        if segue_name == "E"{
+            yosan_data += item_edit!.Price_
+            goodsName.text = item_edit!.goodsName
+            price.text = String(item_edit!.Price_)
+            deadline.date = DateUtils.dateFromString(string: item_edit!.timeDate, format: "yyyy/MM/dd HH:mm:ss")
+            is_bought.isOn = item_edit!.is_bought
+        }
         
         
 
@@ -41,22 +53,79 @@ class Add_item: UIViewController {
         goodsitem.buyURL = URL_text.text ?? ""
         goodsitem.is_bought = is_bought.isOn
         goodsitem.timeDate = formatter.string(from: deadline.date)
-        goodsitem.years = Int(DateUtils.setCalender(format_: "yyyy").string(from: Date()))!
-        goodsitem.month = Int(DateUtils.setCalender(format_: "M").string(from: Date()))!
-        
         if goodsitem.goodsName == "" || goodsitem.Price_ == 0{
             print("失敗")
             dismiss(animated: true)
         }else{
-            createGoodsItem(item: goodsitem)
-            dismiss(animated: true)
+            if segue_name == "E"{
+                goodsitem.id = item_edit!.id
+                
+                try! realm.write{
+                    realm.add(goodsitem,update: .modified)
+                }
+            }else{
+                alert_data(goodsitem: goodsitem)
+            }
+            
+            
         }
+        
+        
+        
+        
         
     }
     
     func createGoodsItem(item: GoodsItem){
         try! realm.write{
             realm.add(item)
+        }
+    }
+    
+    func alert_data(goodsitem: GoodsItem){
+        //9月がマイナス行ったときの処理
+        if yosan_data - goodsitem.Price_ < 0{
+            //アラート処理
+            let alert = UIAlertController(title: "今月予算オーバー", message: "今月に購入し、来月の予算を減らすか\n来月に購入するか選んでください", preferredStyle: .alert)
+            
+            let delete = UIAlertAction(title: "今月購入", style: .default, handler: { (action) -> Void in
+                goodsitem.years = Int(DateUtils.setCalender(format_: "yyyy").string(from: Date()))!
+                goodsitem.month = Int(DateUtils.setCalender(format_: "M").string(from: Date()))!
+                goodsitem.is_kurikoshi = true
+                self.createGoodsItem(item: goodsitem)
+                self.dismiss(animated: true)
+                
+            })
+            
+            let cancel = UIAlertAction(title: "来月購入", style: .cancel, handler: { (action) -> Void in
+                let years:Int = Int(DateUtils.setCalender(format_: "yyyy").string(from: Date()))!
+                let month:Int = Int(DateUtils.setCalender(format_: "M").string(from: Date()))!
+                var items_years_plus:Int = years
+                var items_month_plus:Int = month
+                
+                if month+1 == 13{
+                    items_month_plus  = 1
+                    items_years_plus += 1
+                }else{
+                    items_month_plus += 1
+                }
+                goodsitem.years = items_years_plus
+                goodsitem.month = items_month_plus
+                self.createGoodsItem(item: goodsitem)
+                
+                self.dismiss(animated: true)
+            })
+            
+            alert.addAction(delete)
+            alert.addAction(cancel)
+            
+            self.present(alert, animated: true, completion: nil)
+            
+        }else{
+            goodsitem.years = Int(DateUtils.setCalender(format_: "yyyy").string(from: Date()))!
+            goodsitem.month = Int(DateUtils.setCalender(format_: "M").string(from: Date()))!
+            createGoodsItem(item: goodsitem)
+            dismiss(animated: true)
         }
     }
     

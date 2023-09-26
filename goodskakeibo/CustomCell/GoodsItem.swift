@@ -18,6 +18,7 @@ class GoodsItem: Object {
     @Persisted var buyURL: String = ""
     @Persisted var photofileName: String? = nil
     @Persisted var is_bought: Bool
+    @Persisted var is_kurikoshi: Bool = false
     
     override static func primaryKey() -> String? {
                 return "id"

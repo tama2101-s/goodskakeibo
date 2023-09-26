@@ -148,18 +148,21 @@
                     <navigationItem key="navigationItem" title="推しグッズ購入予定" id="3sg-oU-Xff">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="JvU-G7-UZ5">
                             <connections>
-                                <segue destination="kCm-KV-iZZ" kind="presentation" modalPresentationStyle="currentContext" id="k5Z-G6-sJE"/>
+                                <segue destination="kCm-KV-iZZ" kind="presentation" identifier="add_Goods" modalPresentationStyle="currentContext" id="k5Z-G6-sJE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="UITableview_bought" destination="ycM-QP-aGQ" id="LM0-go-Dv6"/>
                         <outlet property="UITableview_nobuy" destination="Vw0-ZM-tm6" id="E8y-ot-gAW"/>
+                        <outlet property="boughtLabel" destination="YeA-b3-hgm" id="mRG-bp-ggd"/>
                         <outlet property="monthyosan" destination="6yT-FA-ssa" id="QoQ-oO-6P2"/>
+                        <outlet property="nobuyLabel" destination="ISM-p0-UI5" id="W0T-19-kIF"/>
                         <outlet property="pinkLabel" destination="hv2-Rg-3kM" id="d5G-7a-GVq"/>
                         <outlet property="segment_data" destination="Wds-MX-tRh" id="Sqy-mt-dQt"/>
                         <outlet property="yosanLabel" destination="stL-1S-qt1" id="9gb-Lp-bxT"/>
                         <segue destination="6aS-Xv-Ais" kind="presentation" identifier="ShowGoodsItem" modalPresentationStyle="automatic" id="9wV-GM-bfW"/>
+                        <segue destination="kCm-KV-iZZ" kind="presentation" identifier="EditMode" modalPresentationStyle="currentContext" id="uwO-Me-wJV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NeM-lu-bIk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -625,6 +628,9 @@
             <point key="canvasLocation" x="1922.9007633587785" y="-1194.3661971830986"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="uwO-Me-wJV"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="lessthan" catalog="system" width="128" height="108"/>

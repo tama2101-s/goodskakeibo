@@ -8,10 +8,12 @@
 import UIKit
 import RealmSwift
 
-class HomeView: UIViewController, UITableViewDataSource{
+class HomeView: UIViewController{
     
     var monthNow : Int = 0
     var yosan: Int = 0
+    var defalt_yosan: Int = 0
+
     
     @IBOutlet var pinkLabel: UILabel!
     @IBOutlet var yosanLabel: UILabel!
@@ -70,6 +72,116 @@ class HomeView: UIViewController, UITableViewDataSource{
         }
     }
     
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        check_table(tableView)
+        if tag == 0 {
+            return items_nobuy.count
+        }else{
+            return items_bought.count
+        }
+    }
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowGoodsItem"{
+            let showItemViewController = segue.destination as! ShowItem
+            showItemViewController.item = show_data
+            
+        }
+    }
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        sum_price = 0
+        items_nobuy = readItems(is_bought:false, years: Int(DateUtils.setCalender(format_: "yyyy").string(from: Date()))!,month: Int(DateUtils.setCalender(format_: "M").string(from: Date()))!)
+        UITableview_nobuy.reloadData()
+        items_bought = readItems(is_bought: true, years: Int(DateUtils.setCalender(format_: "yyyy").string(from: Date()))!,month: Int(DateUtils.setCalender(format_: "M").string(from: Date()))!)
+        UITableview_bought.reloadData()
+        
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        minus_yosan()
+        
+    }
+    
+    
+    
+    func readItems(is_bought:Bool, years:Int, month:Int) -> [GoodsItem]{
+        print(is_bought,years,month)
+        return Array(realm.objects(GoodsItem.self).filter("is_bought == %@ && years == %@ && month == %@",is_bought,years,month))
+    }
+    
+    func minus_yosan(){
+        if UserDefaults.standard.integer(forKey: "yosandata") == nil {
+            yosanLabel.text = "設定から予算を設定してください"
+            yosanLabel.font = yosanLabel.font.withSize(20)
+            
+        } else {
+            defalt_yosan = UserDefaults.standard.integer(forKey: "yosandata")
+            yosan = defalt_yosan - sum_price!
+            yosanLabel.text = commaSeparate.ThreeDigits(yosan) + "円"
+            
+        }
+    }
+    
+    
+    @IBAction func segmentControlltaped(_ sender: UISegmentedControl){
+        print("押されたよ")
+        switch sender.selectedSegmentIndex {
+        case 0:
+            print("９月分")
+            monthNow = Int(DateUtils.setCalender(format_: "M").string(from: dt))!
+            monthyosan.text =
+            "\(monthNow)月の予算"
+            sum_price = 0
+            
+            items_nobuy = readItems(is_bought:false, years: Int(DateUtils.setCalender(format_: "yyyy").string(from: Date()))!,month: Int(DateUtils.setCalender(format_: "M").string(from: dt))!)
+            UITableview_nobuy.reloadData()
+            items_bought = readItems(is_bought: true, years: Int(DateUtils.setCalender(format_: "yyyy").string(from: Date()))!,month: Int(DateUtils.setCalender(format_: "M").string(from: dt))!)
+            UITableview_bought.reloadData()
+            
+            minus_yosan()
+            
+        case 1:
+            print("10月分")
+            monthNow = Int(DateUtils.setCalender(format_: "M").string(from: dt))! + 1
+            monthyosan.text =
+            "\(monthNow)月の予算"
+            sum_price = 0
+            
+            var items_years = Int(DateUtils.setCalender(format_: "yyyy").string(from: Date()))!
+            var items_month = Int(DateUtils.setCalender(format_: "M").string(from: dt))!
+            if items_month+1 == 13{
+                items_month  = 1
+                items_years += 1
+            }else{
+                items_month += 1
+            }
+            
+            items_nobuy = readItems(is_bought:false, years: items_years,month: items_month)
+            UITableview_nobuy.reloadData()
+            items_bought = readItems(is_bought: true, years: items_years,month: items_month)
+            UITableview_bought.reloadData()
+            
+            minus_yosan()
+        default:
+            print("存在しない番号")
+        }
+    }
+    
+    
+}
+
+extension HomeView: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -111,64 +223,6 @@ class HomeView: UIViewController, UITableViewDataSource{
         }
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        check_table(tableView)
-        if tag == 0 {
-            return items_nobuy.count
-        }else{
-            return items_bought.count
-        }
-    }
-    
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowGoodsItem"{
-            let showItemViewController = segue.destination as! ShowItem
-            showItemViewController.item = show_data
-            
-        }
-    }
-    
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        sum_price = 0
-        items_nobuy = readItems(is_bought:false, years: Int(DateUtils.setCalender(format_: "yyyy").string(from: Date()))!,month: Int(DateUtils.setCalender(format_: "M").string(from: Date()))!)
-        UITableview_nobuy.reloadData()
-        items_bought = readItems(is_bought: true, years: Int(DateUtils.setCalender(format_: "yyyy").string(from: Date()))!,month: Int(DateUtils.setCalender(format_: "M").string(from: Date()))!)
-        UITableview_bought.reloadData()
-        
-    }
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if UserDefaults.standard.integer(forKey: "yosandata") == nil {
-            yosanLabel.text = "設定から予算を設定してください"
-            yosanLabel.font = yosanLabel.font.withSize(20)
-            
-        } else {
-            yosan = UserDefaults.standard.integer(forKey: "yosandata")
-            yosan -= sum_price!
-            yosanLabel.text = commaSeparate.ThreeDigits(yosan) + "円"
-            
-        }
-        
-        
-    }
-    
-    
-    
-    func readItems(is_bought:Bool, years:Int, month:Int) -> [GoodsItem]{
-        print(is_bought,years,month)
-        return Array(realm.objects(GoodsItem.self).filter("is_bought == %@ && years == %@ && month == %@",is_bought,years,month))
-    }
-    
-    
-}
-
-extension HomeView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return .leastNormalMagnitude  // Cell間に設けたい余白の高さを指定
     }
@@ -200,6 +254,9 @@ extension HomeView: UITableViewDelegate {
         self.performSegue(withIdentifier: "ShowGoodsItem", sender: nil)
     }
 }
+
+
+
 
 
 

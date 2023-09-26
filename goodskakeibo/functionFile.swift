@@ -67,7 +67,7 @@ class Image_save{
             try data!.write(to: fileURL)
             print(fileName)
         } catch {
-            print("💀エラー")
+            print(error.localizedDescription)
         }
         return fileName
     }

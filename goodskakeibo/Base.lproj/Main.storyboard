@@ -209,7 +209,8 @@
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Vw0-ZM-tm6">
                                 <rect key="frame" x="20" y="334.66666666666669" width="353" height="202.00000000000006"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="月の購入済みリスト" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YeA-b3-hgm">
                                 <rect key="frame" x="20" y="544.66666666666663" width="353" height="14"/>
@@ -228,10 +229,14 @@
                             </view>
                             <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ycM-QP-aGQ">
                                 <rect key="frame" x="20" y="571" width="353" height="180"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="1qJ-vK-ev8"/>
                                 </constraints>
+                                <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8oY-7o-WPw"/>
@@ -318,30 +323,36 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="TWF-PJ-Jsr">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="TWF-PJ-Jsr">
                                         <rect key="frame" x="0.0" y="99" width="353" height="128"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="E4R-nd-Vo6">
-                                                <rect key="frame" x="0.0" y="0.0" width="110.66666666666667" height="128"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="128"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="画像" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjr-0K-Ejh">
-                                                        <rect key="frame" x="0.0" y="0.0" width="110.66666666666667" height="59"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="59"/>
                                                         <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bnW-EQ-HHb">
-                                                        <rect key="frame" x="0.0" y="69" width="110.66666666666667" height="59"/>
+                                                        <rect key="frame" x="0.0" y="69" width="176.66666666666666" height="59"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="画像を選択"/>
+                                                        <connections>
+                                                            <action selector="selectImage" destination="2rP-Hn-eDa" eventType="touchUpInside" id="x4m-zO-g1i"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="trv-vx-kio">
-                                                <rect key="frame" x="110.66666666666664" y="0.0" width="242.33333333333337" height="128"/>
+                                                <rect key="frame" x="176.66666666666663" y="0.0" width="176.33333333333337" height="128"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="k36-r6-GAP"/>
+                                                </constraints>
                                             </imageView>
                                         </subviews>
                                     </stackView>
@@ -486,6 +497,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="購入する">
                                     <fontDescription key="titleFontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="24"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="tapped_buy" destination="6aS-Xv-Ais" eventType="touchUpInside" id="cEl-ON-Ro2"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="9zR-Zs-eHF">
                                 <rect key="frame" x="30" y="337" width="333" height="230"/>
@@ -552,21 +566,25 @@
                             <constraint firstItem="ssG-A6-kAD" firstAttribute="trailing" secondItem="bmc-4u-dfH" secondAttribute="trailing" constant="232" id="9pG-zU-uA9"/>
                             <constraint firstItem="9zR-Zs-eHF" firstAttribute="leading" secondItem="ssG-A6-kAD" secondAttribute="leading" constant="30" id="APb-u5-JZM"/>
                             <constraint firstItem="ssG-A6-kAD" firstAttribute="trailing" secondItem="yeg-vI-dw5" secondAttribute="trailing" constant="91" id="F9m-Jc-Qt0"/>
+                            <constraint firstItem="4j3-VW-tUR" firstAttribute="trailing" secondItem="ssG-A6-kAD" secondAttribute="trailing" id="Iwe-vV-370"/>
                             <constraint firstItem="APx-G4-hWF" firstAttribute="leading" secondItem="ssG-A6-kAD" secondAttribute="leading" constant="226" id="Srz-JL-t44"/>
                             <constraint firstItem="yeg-vI-dw5" firstAttribute="top" secondItem="9zR-Zs-eHF" secondAttribute="bottom" constant="91" id="Z0h-0I-wed"/>
                             <constraint firstItem="bmc-4u-dfH" firstAttribute="top" secondItem="9zR-Zs-eHF" secondAttribute="bottom" constant="97" id="d7y-kb-mGM"/>
                             <constraint firstAttribute="trailing" secondItem="APx-G4-hWF" secondAttribute="trailing" constant="-40" id="dB6-PS-rU3"/>
                             <constraint firstItem="4j3-VW-tUR" firstAttribute="top" secondItem="N78-vi-Rrn" secondAttribute="top" id="gMW-06-uP4"/>
+                            <constraint firstItem="4j3-VW-tUR" firstAttribute="top" secondItem="ssG-A6-kAD" secondAttribute="top" id="grW-FC-xu3"/>
                             <constraint firstItem="APx-G4-hWF" firstAttribute="top" secondItem="ssG-A6-kAD" secondAttribute="top" constant="238" id="h2X-tU-uAQ"/>
                             <constraint firstItem="bmc-4u-dfH" firstAttribute="leading" secondItem="N78-vi-Rrn" secondAttribute="leading" constant="-44" id="h3m-rj-foa"/>
                             <constraint firstItem="4j3-VW-tUR" firstAttribute="leading" secondItem="ssG-A6-kAD" secondAttribute="leading" id="hKV-en-ze9"/>
                             <constraint firstAttribute="trailing" secondItem="APx-G4-hWF" secondAttribute="trailing" constant="-40" id="ies-7c-qRZ"/>
                             <constraint firstItem="9zR-Zs-eHF" firstAttribute="top" secondItem="4j3-VW-tUR" secondAttribute="bottom" constant="80" id="q8Y-UF-O4m"/>
                             <constraint firstItem="4j3-VW-tUR" firstAttribute="trailing" secondItem="ssG-A6-kAD" secondAttribute="trailing" id="wry-io-eXy"/>
+                            <constraint firstItem="4j3-VW-tUR" firstAttribute="leading" secondItem="ssG-A6-kAD" secondAttribute="leading" id="zzp-eZ-N8P"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ygt-tU-Enn"/>
                     <connections>
+                        <outlet property="GoodsImage" destination="4j3-VW-tUR" id="uwC-GU-l5a"/>
                         <outlet property="GoodsName" destination="JLO-qS-c7h" id="jG5-6H-Lo6"/>
                         <outlet property="background_circle1" destination="APx-G4-hWF" id="ujY-Fn-rG7"/>
                         <outlet property="background_circle2" destination="bmc-4u-dfH" id="OAH-BZ-7hU"/>
@@ -754,7 +772,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="uwO-Me-wJV"/>
-        <segue reference="8YP-aT-I9h"/>
+        <segue reference="9wV-GM-bfW"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="house" catalog="system" width="128" height="104"/>

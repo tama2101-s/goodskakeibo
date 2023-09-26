@@ -23,11 +23,15 @@ class Add_item: UIViewController {
     
     var item_edit: GoodsItem?
     var segue_name: String = ""
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         add_setting()
         price.keyboardType = UIKeyboardType.numberPad
+        
+        let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGR.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapGR)
         
         if segue_name == "E"{
             yosan_data += item_edit!.Price_
@@ -38,9 +42,13 @@ class Add_item: UIViewController {
         }
         
         
-
+        
         // Do any additional setup after loading the view.
         
+    }
+    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
     }
     
     @IBAction func save(){
@@ -79,6 +87,15 @@ class Add_item: UIViewController {
     func createGoodsItem(item: GoodsItem){
         try! realm.write{
             realm.add(item)
+        }
+    }
+    
+    @IBAction  func selectImage() {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let pickerView = UIImagePickerController()
+            pickerView.sourceType = .photoLibrary
+            pickerView.delegate = self
+            self.present(pickerView, animated: true)
         }
     }
     
@@ -174,15 +191,23 @@ class Add_item: UIViewController {
         pick_Image.layer.shadowOffset = CGSize(width: 0,height: 3)
     }
     
-
+    
     /*
-    // MARK: - Navigation
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension Add_item: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage] as! UIImage // 選択された画像を取得
+        pickImage.image = image      // imageViewプロパティに格納
+        //        self.dismiss(animated: true) // 選択画面を閉じる
     }
-    */
-
 }

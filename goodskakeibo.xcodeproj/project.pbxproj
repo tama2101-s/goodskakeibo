@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4338C7AA2AC2D50400E0FA12 /* ArchivesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4338C7A92AC2D50400E0FA12 /* ArchivesView.swift */; };
 		4344CA132AB7F0020029C9EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4344CA122AB7F0020029C9EE /* AppDelegate.swift */; };
 		4344CA152AB7F0020029C9EE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4344CA142AB7F0020029C9EE /* SceneDelegate.swift */; };
 		4344CA172AB7F0020029C9EE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4344CA162AB7F0020029C9EE /* HomeView.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4338C7A92AC2D50400E0FA12 /* ArchivesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivesView.swift; sourceTree = "<group>"; };
 		4344CA0F2AB7F0020029C9EE /* goodskakeibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = goodskakeibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4344CA122AB7F0020029C9EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4344CA142AB7F0020029C9EE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +57,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4338C7A62AC2D4B500E0FA12 /* ArchivesView */ = {
+			isa = PBXGroup;
+			children = (
+				4338C7A92AC2D50400E0FA12 /* ArchivesView.swift */,
+			);
+			path = ArchivesView;
+			sourceTree = "<group>";
+		};
 		4344CA062AB7F0020029C9EE = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +84,7 @@
 		4344CA112AB7F0020029C9EE /* goodskakeibo */ = {
 			isa = PBXGroup;
 			children = (
+				4338C7A62AC2D4B500E0FA12 /* ArchivesView */,
 				436618D12ABAE04F0061089A /* customLayout */,
 				436618CA2ABACE9E0061089A /* CustomCell */,
 				436618C52AB950DF0061089A /* Show_item */,
@@ -228,6 +239,7 @@
 				436618C32AB8399F0061089A /* Add_item.swift in Sources */,
 				436618C72AB950F70061089A /* ShowItem.swift in Sources */,
 				4344CA152AB7F0020029C9EE /* SceneDelegate.swift in Sources */,
+				4338C7AA2AC2D50400E0FA12 /* ArchivesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

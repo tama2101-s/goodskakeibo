@@ -86,6 +86,9 @@ class HomeView: UIViewController{
         if segue.identifier == "ShowGoodsItem"{
             let showItemViewController = segue.destination as! ShowItem
             showItemViewController.item = show_data
+            if tag == 1{
+                showItemViewController.mode = "bought"
+            }
             
         }else if segue.identifier == "add_Goods"{
             

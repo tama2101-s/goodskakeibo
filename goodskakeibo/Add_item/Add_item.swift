@@ -71,6 +71,7 @@ class Add_item: UIViewController {
                 try! realm.write{
                     realm.add(goodsitem,update: .modified)
                 }
+                dismiss(animated: true)
             }else{
                 alert_data(goodsitem: goodsitem)
             }

@@ -20,6 +20,7 @@ class ArchivesView: UIViewController {
     @IBOutlet var nextmonthButton: UIButton!
     @IBOutlet var nowMonthLabel: UILabel!
     @IBOutlet var nowYearLabel: UILabel!
+    @IBOutlet var nowMonthBought: UILabel!
     @IBOutlet var segment_data: UISegmentedControl!
     
     @IBOutlet var sum_price_label: UILabel!
@@ -117,6 +118,7 @@ class ArchivesView: UIViewController {
     func chengePrevMonth(){
         nowYearLabel.text = String(checkyear) + "年"
         nowMonthLabel.text = String(checkmonth) + "月"
+        nowMonthBought.text = String(checkmonth) + "月の購入済みリスト"
         var checkmonth_back:Int = checkmonth
         var checkmonth_next:Int = checkmonth
         

@@ -136,6 +136,7 @@
                         <outlet property="archivesbackLabel" destination="zu2-J3-u9u" id="mZ3-Fu-V1H"/>
                         <outlet property="backmonthButton" destination="Nza-Jf-IWW" id="fDQ-ko-tH5"/>
                         <outlet property="nextmonthButton" destination="qI0-bY-pFN" id="piU-0e-hFa"/>
+                        <outlet property="nowMonthBought" destination="ZAI-fc-twZ" id="XAT-Dz-cVU"/>
                         <outlet property="nowMonthLabel" destination="e05-Le-vqM" id="FPi-UJ-CAE"/>
                         <outlet property="nowYearLabel" destination="cPn-Or-XYa" id="FPb-0G-YKf"/>
                         <outlet property="segment_data" destination="O4t-Y8-9Fj" id="WiT-zu-7Ik"/>
@@ -305,7 +306,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="Yxd-tu-Vv2">
-                                <rect key="frame" x="20" y="131" width="353" height="615"/>
+                                <rect key="frame" x="20" y="131" width="353" height="443"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ncm-5C-YAg">
                                         <rect key="frame" x="0.0" y="0.0" width="353" height="55"/>
@@ -323,41 +324,8 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="TWF-PJ-Jsr">
-                                        <rect key="frame" x="0.0" y="99" width="353" height="128"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="E4R-nd-Vo6">
-                                                <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="128"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="画像" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjr-0K-Ejh">
-                                                        <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="59"/>
-                                                        <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="16"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bnW-EQ-HHb">
-                                                        <rect key="frame" x="0.0" y="69" width="176.66666666666666" height="59"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="画像を選択"/>
-                                                        <connections>
-                                                            <action selector="selectImage" destination="2rP-Hn-eDa" eventType="touchUpInside" id="x4m-zO-g1i"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                            </stackView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="trv-vx-kio">
-                                                <rect key="frame" x="176.66666666666663" y="0.0" width="176.33333333333337" height="128"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="128" id="k36-r6-GAP"/>
-                                                </constraints>
-                                            </imageView>
-                                        </subviews>
-                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Xmm-04-Ggy">
-                                        <rect key="frame" x="0.0" y="271" width="353" height="71"/>
+                                        <rect key="frame" x="0.0" y="99" width="353" height="71"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="期限" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IbI-su-ei2">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="16"/>
@@ -372,7 +340,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="iVu-I4-Zkg">
-                                        <rect key="frame" x="0.0" y="386" width="353" height="55"/>
+                                        <rect key="frame" x="0.0" y="214" width="353" height="55"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="価格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ua-Qu-ev7">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="16"/>
@@ -388,7 +356,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="rCs-S3-x0M">
-                                        <rect key="frame" x="0.0" y="485" width="353" height="55"/>
+                                        <rect key="frame" x="0.0" y="313" width="353" height="55"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="購入URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7d7-K5-ps6">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="16"/>
@@ -404,7 +372,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dZu-23-xxl">
-                                        <rect key="frame" x="0.0" y="584" width="353" height="31"/>
+                                        <rect key="frame" x="0.0" y="412" width="353" height="31"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="購入済みとしてマーク" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXe-5f-6gW">
                                                 <rect key="frame" x="0.0" y="0.0" width="299" height="31"/>
@@ -417,6 +385,39 @@
                                             </switch>
                                         </subviews>
                                     </stackView>
+                                </subviews>
+                            </stackView>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="TWF-PJ-Jsr">
+                                <rect key="frame" x="24" y="661" width="352.66666666666669" height="128"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="E4R-nd-Vo6">
+                                        <rect key="frame" x="0.0" y="0.0" width="176.33333333333334" height="128"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="画像" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjr-0K-Ejh">
+                                                <rect key="frame" x="0.0" y="0.0" width="176.33333333333334" height="59"/>
+                                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bnW-EQ-HHb">
+                                                <rect key="frame" x="0.0" y="69" width="176.33333333333334" height="59"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="画像を選択"/>
+                                                <connections>
+                                                    <action selector="selectImage" destination="2rP-Hn-eDa" eventType="touchUpInside" id="x4m-zO-g1i"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="trv-vx-kio">
+                                        <rect key="frame" x="176.33333333333331" y="0.0" width="176.33333333333331" height="128"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="k36-r6-GAP"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -772,7 +773,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="uwO-Me-wJV"/>
-        <segue reference="9wV-GM-bfW"/>
+        <segue reference="8YP-aT-I9h"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="house" catalog="system" width="128" height="104"/>

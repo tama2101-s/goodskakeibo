@@ -197,6 +197,7 @@ extension ArchivesView: UITableViewDelegate, UITableViewDataSource {
         cell.layer.shadowOpacity = 0.2
         cell.layer.shadowRadius = 2
         cell.layer.shadowOffset = CGSize(width: 0, height: 1)
+        cell.backgroundColor = UIColor(hexString: "#FFFEC4")
         
         return cell
     }

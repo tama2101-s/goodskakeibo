@@ -37,11 +37,10 @@ class ShowItem: UIViewController {
         deadLine.text = date_data
         price_.text = "\(commaSeparate.ThreeDigits(item!.Price_))円"
         photoData_string = item!.photofileName
-        print(photoData_string)
+//        print(photoData_string)
         GoodsImage.image = getImage()
         if item!.buyURL == ""{
-            buy_button.setTitle("購入済みにする", for: .normal
-            )
+            buy_button.setTitle("購入済みにする", for: .normal)
         }
         
         if mode == "bought"{
@@ -52,23 +51,24 @@ class ShowItem: UIViewController {
     }
     
     @IBAction func tapped_buy(){
+        let goodsitem = GoodsItem()
+        goodsitem.id = item!.id
+        goodsitem.goodsName = item!.goodsName
+        goodsitem.Price_ = item!.Price_
+        goodsitem.photofileName = item!.photofileName
+        goodsitem.buyURL = item!.buyURL
+        goodsitem.is_bought = true
+        goodsitem.timeDate = item!.timeDate
+        goodsitem.month = item!.month
+        goodsitem.years = item!.years
+        
+        try! realm.write{
+            realm.add(goodsitem,update: .modified)
+        }
         if item!.buyURL == ""{
-            let goodsitem = GoodsItem()
-            goodsitem.id = item!.id
-            goodsitem.goodsName = item!.goodsName
-            goodsitem.Price_ = item!.Price_
-            goodsitem.photofileName = item!.photofileName
-            goodsitem.buyURL = item!.buyURL
-            goodsitem.is_bought = true
-            goodsitem.timeDate = item!.timeDate
-            goodsitem.month = item!.month
-            goodsitem.years = item!.years
-            
-            try! realm.write{
-                realm.add(goodsitem,update: .modified)
-            }
             dismiss(animated: true)
         }else{
+            
             UIApplication.shared.open(URL(string: item!.buyURL)!, options: [:], completionHandler: nil)
             dismiss(animated: true)
         }

@@ -12,6 +12,8 @@ class preference: UIViewController {
     @IBOutlet var limit_price_bg: UILabel!
     @IBOutlet var limit_price: UILabel!
     
+    var yosan: Int = 0
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +28,7 @@ class preference: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let yosan = UserDefaults.standard.integer(forKey: "yosandata")
+        yosan = UserDefaults.standard.integer(forKey: "yosandata")
         self.limit_price.text = "\(commaSeparate.ThreeDigits(yosan))円"
     }
     
@@ -41,6 +43,7 @@ class preference: UIViewController {
         alert.addTextField { textField in
             textFieldOnAlert = textField
             textFieldOnAlert.returnKeyType = .done
+            textFieldOnAlert.placeholder = String(self.yosan)
             
         }
         let doneAction = UIAlertAction(title: "決定", style: .default) { _ in

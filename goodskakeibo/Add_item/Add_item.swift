@@ -62,10 +62,18 @@ class Add_item: UIViewController {
         goodsitem.is_bought = is_bought.isOn
         goodsitem.timeDate = formatter.string(from: deadline.date)
         if goodsitem.goodsName == "" || goodsitem.Price_ == 0{
-            print("失敗")
-            dismiss(animated: true)
+            
+            let alert = UIAlertController(title: "入力エラー", message: "グッズ名と金額は必須です", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            }
+            alert.addAction(ok)
+            //ここまで追加
+            present(alert, animated: true, completion: nil)
         }else{
             if segue_name == "E"{
+                goodsitem.years = Int(DateUtils.setCalender(format_: "yyyy").string(from: Date()))!
+                goodsitem.month = Int(DateUtils.setCalender(format_: "M").string(from: Date()))!
+                
                 goodsitem.id = item_edit!.id
                 
                 try! realm.write{

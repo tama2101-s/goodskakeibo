@@ -335,23 +335,35 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
             
             // 削除処理
             let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
-                //削除処理を記述
-                do{
-                    
-                    try! self.realm.write{
+                let alert = UIAlertController(title: "削除", message: "本当に削除しますか？", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    do{
                         
-                        
-                        if self.tag == 0{
-                            self.realm.delete(self.items_nobuy[indexPath.section])
-                        } else {
-                            self.realm.delete(self.items_bought[indexPath.section])
+                        try! self.realm.write{
+                            
+                            
+                            if self.tag == 0{
+                                self.realm.delete(self.items_nobuy[indexPath.section])
+                            } else {
+                                self.realm.delete(self.items_bought[indexPath.section])
+                            }
+                            
                         }
+                    }catch{
                         
                     }
-                }catch{
-                    
+                    self.callReadItem(item_years: self.items_years, item_month: self.monthNow)
                 }
-                self.callReadItem(item_years: self.items_years, item_month: self.monthNow)
+                //ここから追加
+                let cancel = UIAlertAction(title: "キャンセル", style: .cancel) { (acrion) in
+                    self.dismiss(animated: true, completion: nil)
+                }
+                alert.addAction(cancel)
+                //ここまで追加
+                alert.addAction(ok)
+                self.present(alert, animated: true, completion: nil)
+                //削除処理を記述
+                
                 
                 // 実行結果に関わらず記述
                 completionHandler(true)

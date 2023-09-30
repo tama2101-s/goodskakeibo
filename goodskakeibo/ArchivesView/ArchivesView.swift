@@ -47,6 +47,18 @@ class ArchivesView: UIViewController {
         checkyear = yearNow
         
         
+       
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        segment_data.selectedSegmentIndex = 0
+        allGoods_sum = 0
+        
+        chengePrevMonth()
+        
+        items_bought = readItems(is_bought: true, years: checkyear,month: checkmonth)
         UITableview_archives.dataSource = self
         UITableview_archives.delegate = self
         UITableview_archives.register(UINib(nibName: "goodsItemCell", bundle: nil), forCellReuseIdentifier: "ItemCell")
@@ -54,16 +66,6 @@ class ArchivesView: UIViewController {
         for item in Allgoods{
             allGoods_sum += item.Price_
         }
-        
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        segment_data.selectedSegmentIndex = 0
-        
-        chengePrevMonth()
-        
-        items_bought = readItems(is_bought: true, years: checkyear,month: checkmonth)
 //        UITableview_bought.reloadData()
         
     }
